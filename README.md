@@ -116,6 +116,19 @@ Note that Appium does not support relative paths for the appPath value. It must 
 
 I then edited the example test driver to test the Wails Greeting service instead of the Apple calculator:
 
+```javascript
+import { expect, $ } from '@wdio/globals'
+
+describe('Wails Testing', () => {
+    it('should say hello', async function () {
+        await $('~name').setValue('My Name')
+        await $('~greet-button').click()
+        await expect($('~result').toHaveText('Hello My Name'))
+    })
+})
+
+```
+
 # Finding element selectors
 
 ## Use aria-label
