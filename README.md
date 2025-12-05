@@ -65,12 +65,6 @@ Install the Inspector plugin.  It's not strictly necessary for running an automa
 appium plugin install inspector
 ```
 
-Run the appium server:
-
-```
-appium server --use-plugins inspector
-```
-
 # Create your test driver
 
 The e2e-test directory has a working test driver for the Wails app.   To use it directly, run the following commands:
@@ -80,7 +74,7 @@ cd e2e-test
 npm install
 ```
 
-## How the e3e-test directory was created
+## How the e2e-test directory was created
 
 In this example, I'm using a Javascript based mocha test client.  It was created using the webdriverio's [Getting Started](https://webdriver.io/docs/gettingstarted/) guidelines with these steps:
 
@@ -124,7 +118,7 @@ I then edited the example test driver to test the Wails Greeting service instead
 
 # Finding element selectors
 
-## Use area-label
+## Use aria-label
 
 The easiest way to test a Wails webview application is to annotate your HTML elements with `aria-label` attributes.  Appium can then find them up directly with selectors like this:
 
