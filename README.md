@@ -126,7 +126,7 @@ The easiest way to test a Wails webview application is to annotate your HTML ele
  await $('~mybutton').click()
 ```
 
-# Use the Appium Inspector
+## Use the Appium Inspector
 
 If you don't have the ability to add aria-labels to your sources, then you can use the Appium Inspector to find more complicated XPath selectors.   This is discouraged in the Appium docs since XPath expressions are very sensitive to layout changes in the app.
 
