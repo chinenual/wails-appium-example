@@ -1,3 +1,5 @@
+resolve = require('path').resolve
+
 exports.config = {
     //
     // ====================
@@ -53,7 +55,9 @@ exports.config = {
     capabilities: [{
         platformName: 'Mac',
         'appium:automationName': 'Mac2',
-        'appium:bundleId': 'com.apple.calculator'
+        //'appium:bundleId': 'com.apple.calculator'
+        'appium:bundleId': 'com.wails.exampleapp',
+        'appium:appPath': resolve('../exampleapp/bin/exampleapp.app')
     }],
 
     //
