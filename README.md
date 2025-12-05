@@ -129,6 +129,12 @@ describe('Wails Testing', () => {
 
 ```
 
+Run the test via:
+
+```
+# npm run wdio
+```
+
 # Finding element selectors
 
 ## Use aria-label
