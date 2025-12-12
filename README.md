@@ -14,29 +14,9 @@ For this example, we use the basic app created by `wails3 init`:
 wails3 init -n exampleapp
 ```
 
-Edit the HTML to add `aria-label` labels to the elements needed for the test.  Appium cannot use normal css / DOM selectors as you would when testing a normal web application.  While you _can_ use raw XPath expressions for the XCUIElement searches, The aria-label is the easiest way to test with Appium.
 
-```diff
-# git diff .
-diff --git a/exampleapp/frontend/index.html b/exampleapp/frontend/index.html
-index f80af77..05f20d5 100644
---- a/exampleapp/frontend/index.html
-+++ b/exampleapp/frontend/index.html
-@@ -19,10 +19,10 @@
-     </div>
-     <h1>Wails + Javascript</h1>
-     <div class="card">
--        <div class="result" id="result">Please enter your name below 👇</div>
-+        <div aria-label="result" class="result" id="result">Please enter your name below 👇</div>
-         <div class="input-box" id="input">
--            <input class="input" id="name" type="text" autocomplete="off"/>
--            <button class="btn" onclick="doGreet()">Greet</button>
-+            <input aria-label="name" class="input" id="name" type="text" autocomplete="off"/>
-+            <button aria-label="greet-button" class="btn" onclick="doGreet()">Greet</button>
-         </div>
-     </div>
-     <div class="footer">
-```
+Appium cannot use normal css / DOM selectors as you would when testing a normal web application.  While you _can_ use raw XPath expressions for the XCUIElement searches, the aria-label is the easiest way to test with Appium.
+The wails generated example includes aria-label annotations, so it can be tested without any changes.
 
 Build it (note: you need the full packaged app, not just the executable created by `wails3 build`:
 
@@ -87,7 +67,7 @@ npm init wdio@latest
 
 `npm init wdio@latest` will prompt for various settings.  Accept the defaults except for the "What type of testing" - for that, select "Desktop Testing - of MacOS Applications".
 
-The example test driver tests the Apple Calculator app.  Edit `wdio.conf.js` to instead test our Wails application instead.
+The example test driver tests the Apple Calculator app.  Edit `wdio.conf.js` to test our Wails application instead.
 
 ```diff
 # git diff wdio.conf.js 
@@ -107,7 +87,7 @@ index 765be7b..25fba8d 100644
          'appium:automationName': 'Mac2',
 -        'appium:bundleId': 'com.apple.calculator'
 +        //'appium:bundleId': 'com.apple.calculator'
-+        'appium:bundleId': 'com.wails.exampleapp',
++        'appium:bundleId': 'com.example.exampleapp',
 +        'appium:appPath': resolve('../exampleapp/bin/exampleapp.app')
      }],
 ```
@@ -121,8 +101,8 @@ import { expect, $ } from '@wdio/globals'
 
 describe('Wails Testing', () => {
     it('should say hello', async function () {
-        await $('~name').setValue('My Name')
-        await $('~greet-button').click()
+        await $('~input).setValue('My Name')
+        await $('~greet-btn').click()
         await expect($('~result').toHaveText('Hello My Name'))
     })
 })
